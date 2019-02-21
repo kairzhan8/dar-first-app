@@ -1,0 +1,19 @@
+<div>
+  <table style="width: 100%;">
+    <tr>
+      <th>UserId</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>isDone</th>
+    </tr>
+    <tr *ngFor="let task of tasks" class="prop">
+      <td> {{ task.userId }} </td>
+      <td>{{ task.title }}</td>
+      <td>{{ task.description }}</td>
+      <td> {{ task.isDone }} </td>
+      <a [routerLink]="['/task', task.id]">Edit</a>
+      <a [routerLink]="" (click)="deleteTask()">Delete</a>
+    </tr>
+  </table>
+
+</div>

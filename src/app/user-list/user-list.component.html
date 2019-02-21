@@ -1,0 +1,6 @@
+<h1>Users:</h1>
+<button (click)="getUsers()"><a [routerLink]="['/users']"></a>Get Users</button>
+<div *ngFor="let user of users">
+  <h4 (click)="getUserById(user.id)"><a [routerLink]="['/user', user.id]">{{ user.name }}</a></h4>
+</div>
+

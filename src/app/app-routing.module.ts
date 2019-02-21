@@ -1,7 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { UserListComponent } from './user-list/user-list.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
+import { TaskListComponent } from './task-list/task-list.component';
+import { TaskDetailsComponent } from './task-details/task-details.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: 'users', component: UserListComponent},
+  {path: 'user/:id', component: UserDetailComponent},
+  {path: 'tasks', component: TaskListComponent},
+  {path: 'task', component: TaskDetailsComponent},
+  {path: 'task/:id', component: TaskDetailsComponent},
+  {path: '', pathMatch: 'full', redirectTo: 'users'}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
