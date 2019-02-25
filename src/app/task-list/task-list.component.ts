@@ -11,7 +11,6 @@ export class TaskListComponent implements OnInit {
 
   tasks: Task[];
 
-
   constructor(private taskRestDataService: TaskDataService) { }
 
   ngOnInit() {
@@ -21,17 +20,25 @@ export class TaskListComponent implements OnInit {
   getTasks() {
     this.taskRestDataService.getTasks()
     .subscribe(res => {
+      console.log('getTasks', res);
       this.tasks = res;
+      console.log(this.tasks.length);
     });
 
   }
 
-  deleteTask(tasks) {
-    console.log(this.tasks);
-    this.taskRestDataService.deleteTask(this.tasks)
-    .subscribe();
+  deleteTask(id: number) {
+    // variant 1
+    // this.taskRestDataService.deleteTask(id)
+    // .subscribe(res => {
+    //   this.tasks = this.tasks.filter(task => task.id != id);
+    // });
+    console.log(this.tasks.length);
+    console.log(this);
+    this.taskRestDataService.deleteTask(id)
+    .subscribe( () => {
+      console.log(this);
+      this.getTasks();
+    });
   }
-
-
-
 }

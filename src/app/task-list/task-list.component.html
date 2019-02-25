@@ -12,8 +12,8 @@
       <td>{{ task.description }}</td>
       <td> {{ task.isDone }} </td>
       <a [routerLink]="['/task', task.id]">Edit</a>
-      <a [routerLink]="" (click)="deleteTask()">Delete</a>
+      <a [routerLink]="" (click)="deleteTask(task.id)">Delete</a>
     </tr>
   </table>
-
+  <button [routerLink]="['/task']">Create</button>
 </div>

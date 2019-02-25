@@ -11,13 +11,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class UserDetailComponent implements OnInit {
 
   @Input() users: User[];
-  @Input() seletctedUser: User;
+  @Input() user: User;
 
 
   constructor(private userService: UserService, private route: ActivatedRoute) { }
 
 
   ngOnInit() {
+    this.userService.getUserById(this.route.snapshot.params.id).subscribe((res) => {
+      this.user = res;
+    });
     // this.route.paramMap.subscribe(params => {
     //   console.log(params);
     //   this.users.forEach((p: User) => {

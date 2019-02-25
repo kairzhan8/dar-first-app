@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TaskRestService } from './task-rest.service';
+import { Task } from './task.type';
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +13,19 @@ export class TaskDataService {
     return this.taskRestService.getTasks();
   }
 
-  createTask(task) {
+  createTask(task: Task) {
     return this.taskRestService.createTask(task);
   }
 
-  updateTask(task) {
-    return this.taskRestService.updateTask(task);
+  updateTask(userId: string, task: Task) {
+    return this.taskRestService.updateTask(userId, task);
   }
 
-  deleteTask(Task) {
-    return this.taskRestService.deleteTask(Task);
+  deleteTask(id: number) {
+    return this.taskRestService.deleteTask(id);
+  }
+
+  getTask(id: number) {
+    return this.taskRestService.getTask(id);
   }
 }

@@ -1,7 +1,7 @@
 <div>
-  User:<input type="text" [(ngModel)]="userId"/><br>
-  Title:<input type="text" [(ngModel)]="title"/><br>
-  Description:<input type="text" [(ngModel)] = "description"><br>
-  <input type="checkbox" [(ngModel)] = "isChecked">
-  <button >Save</button>
+  User:<input type="text" [(ngModel)]="task.userId"/><br>
+  Title:<input type="text" [(ngModel)]="task.title"/><br>
+  Description:<input type="text" [(ngModel)] = "task.description"><br>
+  <input type="checkbox" [(ngModel)] = "task.isDone">
+  <button (click)="saveTask()"><span *ngIf="id">Save</span><span *ngIf="!id">Create</span></button>
 </div>

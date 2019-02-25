@@ -10,13 +10,6 @@ import { Task } from './task.type';
 })
 export class TaskRestService {
 
- httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Authorization': 'my-auth-token'
-  })
-};
-
   host = 'http://expo.iict.kz/api/';
 
 
@@ -27,14 +20,18 @@ export class TaskRestService {
   }
 
   createTask(task: Task): Observable<Task> {
-    return this.httpClient.post<Task>(`${this.host}task?filter{"where":{"userId":""}}`, task, this.httpOptions);
+    return this.httpClient.post<Task>(`${this.host}tasks`, task);
   }
 
-  updateTask(task: Task): Observable<Task> {
-    return this.httpClient.put<Task>(`${this.host}task/:id`, task, this.httpOptions);
+  updateTask(userId: string, task: Task): Observable<Task> {
+    return this.httpClient.put<Task>(`${this.host}tasks/${task.id}`, task);
   }
 
   deleteTask(id: number): Observable<Task> {
-    return this.httpClient.delete<Task>(`${this.host}task/:id`);
+    return this.httpClient.delete<Task>(`${this.host}tasks/${id}`);
+  }
+
+  getTask(id: number): Observable<Task> {
+    return this.httpClient.get<Task>(`${this.host}tasks/${id}`);
   }
 }

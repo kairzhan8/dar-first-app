@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskDataService } from '../services/task/task-data.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Task } from '../services/task/task.type';
 
 @Component({
   selector: 'app-task-details',
@@ -8,27 +10,65 @@ import { TaskDataService } from '../services/task/task-data.service';
 })
 export class TaskDetailsComponent implements OnInit {
 
+  id: number;
   userId: string;
   title: string;
   description: string;
-  isChecked: false;
+  isDone: boolean;
 
-  constructor(private taskDataService: TaskDataService) { }
+  task = {
+    userId: this.userId,
+    title: this.title,
+    description: this.description,
+    isDone: this.isDone
+  };
+
+  constructor(private taskDataService: TaskDataService,
+              private route: ActivatedRoute,
+              private router: Router,
+     ) { }
 
   ngOnInit() {
+    this.id = this.route.snapshot.params.id;
+    if (this.id) {
+      this.getTask(this.id);
+    }
+
   }
 
-  // createTask(task) {
-  //   this.taskDataService.createTask(task)
-  //   .subscribe(task => this.;
-  // }
+  getTask(id: number) {
+    this.taskDataService.getTask(id)
+    .subscribe(res => {
+      this.task = res;
+      console.log(this.task);
+      // this.userId = res.userId;
+      // this.title = res.title;
+      // this.description = res.description;
+      // this.isChecked = res.isChecked;
+    });
+  }
 
-  // updateTask(task) {
-  //   this.taskDataService.updateTask(task)
-  //   .subscribe(task => this.tasks.push(task));
-  // }
+  saveTask() {
+    this.id = this.route.snapshot.params.id;
+    console.log(this.id + 'id');
+    console.log(this.task);
+    if (this.id) {
+      this.taskDataService.updateTask(this.userId, this.task)
+        .subscribe((res: Task) => {
+        console.log(this.task);
+        this.router.navigateByUrl('/tasks');
+      });
+    } else {
+      this.taskDataService.createTask(this.task)
+        .subscribe((res: Task) => {
+          this.router.navigateByUrl('/tasks');
+      });
+    }
+  }
+
+  }
 
 
 
 
-}
+
