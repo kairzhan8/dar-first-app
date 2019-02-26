@@ -50,8 +50,6 @@ export class TaskDetailsComponent implements OnInit {
 
   saveTask() {
     this.id = this.route.snapshot.params.id;
-    console.log(this.id + 'id');
-    console.log(this.task);
     if (this.id) {
       this.taskDataService.updateTask(this.userId, this.task)
         .subscribe((res: Task) => {
