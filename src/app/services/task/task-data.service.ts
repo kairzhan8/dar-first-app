@@ -10,7 +10,10 @@ export class TaskDataService {
   constructor(private taskRestService: TaskRestService) { }
 
   getTasks() {
-    return this.taskRestService.getTasks();
+    const filter = {
+      where: { userId: 'Kairzhan'}
+    };
+    return this.taskRestService.getTasks(filter);
   }
 
   createTask(task: Task) {
