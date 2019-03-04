@@ -1,5 +1,5 @@
 <div>
   <ul>
-    <li *ngFor="let city of cities"> {{ city | cityprefix}} </li>
+    <li *ngFor="let city of cities"> {{ city.name | cityprefix:city.type}} </li>
   </ul>
 </div>

@@ -7,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CitiesComponent implements OnInit {
 
-  cities = ['Almaty', 'Astana', 'Shymkent', 'London', 'Paris', 'Madrid'];
+  cities: Array<{name: string, type: string}> = [
+    {name: 'Almaty', type: 'city' },
+    {name: 'Akbulak', type: 'village'},
+    {name: 'Astana', type: 'city'},
+    {name: 'London', type: 'city'},
+    {name: 'Aksay', type: 'village'}
+  ];
 
   constructor() { }
 

@@ -10,6 +10,7 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { UserService } from './services/user/user.service';
 import { TaskDetailsComponent } from './task-details/task-details.component';
 import { CitiesModule } from './cities/cities/cities.module';
+import { FlexComponent } from './flex/flex.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { CitiesModule } from './cities/cities/cities.module';
     UserListComponent,
     UserDetailComponent,
     TaskDetailsComponent,
+    FlexComponent
   ],
   imports: [
     BrowserModule,

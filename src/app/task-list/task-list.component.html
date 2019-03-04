@@ -10,7 +10,8 @@
       <td> {{ task.userId }} </td>
       <td>{{ task.title }}</td>
       <td>{{ task.description }}</td>
-      <td> {{ task.isDone }} </td>
+      <td *ngIf="task.isDone == true"><span class='done'>Выполнено!</span></td>
+      <td *ngIf="task.isDone == false"><span class='undone'>Не выполнено!</span></td>
       <a [routerLink]="['/task', task.id]">Edit</a>
       <a [routerLink]="" (click)="deleteTask(task.id)">Delete</a>
     </tr>
