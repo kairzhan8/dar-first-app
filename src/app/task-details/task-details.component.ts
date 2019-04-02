@@ -26,27 +26,18 @@ export class TaskDetailsComponent implements OnInit {
   constructor(private taskDataService: TaskDataService,
               private route: ActivatedRoute,
               private router: Router,
-     ) { }
+     ) {
+
+     }
 
   ngOnInit() {
     this.id = this.route.snapshot.params.id;
-    if (this.id) {
-      this.getTask(this.id);
-    }
+    this.route.data.subscribe((res) => {
+      console.log(res);
+  });
+}
 
-  }
 
-  getTask(id: number) {
-    this.taskDataService.getTask(id)
-    .subscribe(res => {
-      this.task = res;
-      console.log(this.task);
-      // this.userId = res.userId;
-      // this.title = res.title;
-      // this.description = res.description;
-      // this.isChecked = res.isChecked;
-    });
-  }
 
   saveTask() {
     this.id = this.route.snapshot.params.id;
