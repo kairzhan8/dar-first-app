@@ -22,9 +22,18 @@ export class TaskListComponent implements OnInit {
     .subscribe(res => {
       console.log('getTasks', res);
       this.tasks = res;
-      console.log(this.tasks.length);
+      console.log(this.tasks);
     });
+  }
 
+  getColor(isDone: boolean) {
+    let color: string;
+    if (isDone) {
+      color = 'green';
+    } else {
+      color = 'red';
+    }
+    return color;
   }
 
   deleteTask(id: number) {

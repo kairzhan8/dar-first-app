@@ -7,11 +7,10 @@
       <th>isDone</th>
     </tr>
     <tr *ngFor="let task of tasks" class="prop">
-      <td> {{ task.userId }} </td>
-      <td>{{ task.title }}</td>
+      <td>{{ task.userId }}</td>
+      <td [style.color] = "getColor(task.isDone)">{{ task.title }}</td>
       <td>{{ task.description }}</td>
-      <td *ngIf="task.isDone == true"><span class='done'>Выполнено!</span></td>
-      <td *ngIf="task.isDone == false"><span class='undone'>Не выполнено!</span></td>
+      <td>{{ task.isDone | taskState:task.isDone}}</td>
       <a [routerLink]="['/task', task.id]">Edit</a>
       <a [routerLink]="" (click)="deleteTask(task.id)">Delete</a>
     </tr>
